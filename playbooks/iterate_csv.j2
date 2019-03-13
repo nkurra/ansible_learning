@@ -1,0 +1,11 @@
+---
+hostipmacs:
+{% for item in csvfile.split("\n") %}
+{%   if loop.index != 1 %}
+{%     set list = item.split(",") %}
+  - host: '{{ list[0]|trim() }}'
+    inventory_name: '{{ list[1]|trim() }}'
+    ip: '{{ list[2]|trim() }}'
+    mac: '{{ list[3]|trim() }}'
+{%   endif %}
+{% endfor %}

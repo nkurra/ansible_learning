@@ -1,0 +1,21 @@
+- hosts: localhost
+  gather_facts: false
+  vars:
+    playbook_version: 0.1b
+  vars_files:
+    - conf/webdefaults.yml
+  vars_prompt:
+    - name: pkg_name
+      prompt: what package need to be installed?
+  tasks:
+    - name : Install the  {{ pkg_name }} package
+      yum: pkg={{ pkg_name }} state=removed update_cache=true
+    - name : Install the  {{ pkg_name }} package
+      yum: pkg={{ pkg_name }} state=installed update_cache=true
+      notify: Restart {{ pkg_name }}
+    - debug: msg="this is nagarjuna kurra {{ lookup('csvfile', ' nagarjuna file=lookup.csv delimiter=, col=2') }} "
+  handlers:
+    - name: Restart {{ pkg_name }}
+      service: name={{pkg_name }} state=restarted
+      register: result
+    - debug: msg=result

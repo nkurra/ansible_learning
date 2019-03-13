@@ -1,0 +1,25 @@
+--- # Practice until loop
+  - hosts: localhost
+    gather_facts: no
+    tasks:
+      - name: check the service status
+        shell: systemctl status httpd
+        register: result
+        until: result.stdout.find( "active (running)") != -1
+        retries: 5
+        delay: 5
+        ignore_errors: yes
+        notify: Restart httpd
+      - debug: var=result
+      - name: check second loop
+        shell: "echo {{item }}"
+        with_items:
+          - "one"
+          - "two"
+        register: echo
+      - debug: var=echo
+    handlers:
+      - name: Restart httpd
+        shell: systemctl restart httpd
+        register: restart_output
+      - debug: var=restart_output

@@ -1,0 +1,10 @@
+--- # Convert csv file to host file
+  - hosts: localhost
+    user: test
+    sudo: yes
+    gather_facts: no
+    tasks:
+      - name: read csv and convert to host file
+        shell: cat /home/test/playbooks/hosts.csv
+        register: result
+      - debug: var=result

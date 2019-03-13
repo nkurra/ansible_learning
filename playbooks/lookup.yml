@@ -1,0 +1,8 @@
+---
+  - hosts: all
+    gather_facts: false
+    tasks:
+    - debug: msg="kurra {{ lookup ( 'csvfile', 'nagarjuna file=lookup.csv delimiter=,  default=NOMATCH') }}"
+    - name: log uptime
+      raw : /usr/bin/uptime >>/tmp/uptime.log
+      run_once: true

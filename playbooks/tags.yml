@@ -1,0 +1,17 @@
+--- # Tags example
+  - hosts: localhost
+    user: test
+    sudo: yes
+    gather_facts: no
+    tasks:
+      - name: Install packages from the list.
+        yum: pkg= {{ item }} state=latest
+        with_items:
+          - telnet
+          - lynx
+        tags:
+          - packages
+      - name: Verify whether packages were installed
+        shell: yum list installed | egrep "telnet|lynx" >/tmp/pkgs.log
+        tags:
+          - verification

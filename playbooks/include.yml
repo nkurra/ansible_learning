@@ -1,0 +1,10 @@
+--- # include test
+  - hosts: localhost
+    user: test
+    sudo: yes
+    gather_facts: no
+    tasks:
+      - include: plays/packages.yml
+      - name: Verify the telnet package is installed
+        raw: yum list installed | grep telnet >/tmp/pkgs.log
+      

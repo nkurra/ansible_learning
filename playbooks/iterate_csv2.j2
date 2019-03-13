@@ -1,0 +1,11 @@
+---
+hostipmacs:
+{% for item in csvfile.split("\n") %}
+{%   if loop.index != 1 %}
+{%     set list = item.split(",") %}
+{% 	if list[1] | regex_search('(gw)') %}
+{{ '[gateway]' }}
+inventory_name: '{{ list[1]|trim() }}'
+{%	endif	%}
+{%   endif %}
+{% endfor %}

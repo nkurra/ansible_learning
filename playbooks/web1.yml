@@ -1,0 +1,21 @@
+- hosts: apacheweb
+  user: test
+  vars:
+    playbook_version: 0.1a
+  vars_files:
+    - conf/webdefaults.yml
+    - conf/vars.yml
+  vars_prompt:
+    - name: pkg_name
+      prompt: Which package to be installed?
+  tasks:
+    - name: Install {{ pkg_name }} on web node
+      yum: pkg= {{ pkg_name }} state=installed update_cache=true
+      register: result
+    - debug: var=result
+      notify : Installed {{ pkg_name }}
+  handlers:
+    - name: Installed {{ pkg_name }}
+      yum: pkg= {{ pkg_name }}  state=installed
+    
+    

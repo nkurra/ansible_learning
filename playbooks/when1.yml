@@ -1,0 +1,21 @@
+--- ## When testing skills
+  - hosts: all
+    gather_facts: true
+    vars:
+      playbook_version: 01a
+    vars_files: 
+      - conf/webdefaults.yml
+    vars_prompt:
+      - name: pkg_name
+        prompt: enter list of  package name?
+    tasks:
+      - name: Install the requested package
+        yum: pkg= {{ pkg_name }} state=installed
+      - name: Provide list of packages to install
+        yum:
+          name: ['httpd','lynx']
+          state: present
+        when:
+          ansible_nodename=="nkurra4.mylabserver.com"
+        register: result
+      - debug: var=result

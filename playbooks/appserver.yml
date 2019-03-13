@@ -1,0 +1,21 @@
+- hosts: all
+  vars:
+    control_server: nkurra2.mylabserver.com
+    web_root: /var/www/html
+  vars_files:
+    - conf/vars.yml
+  tasks:
+    - name: Remove httpd
+      yum: pkg=httpd state=removed update_cache=true
+    - name: Install Lynx on App server
+      action : yum name=httpd state=installed
+      async: 10
+      poll: 10
+      register: install_httpd
+    - debug: var=install_httpd
+      notify: Restart httpd
+  handlers:
+    - name: Restart httpd
+      action: service name=httpd state=restarted
+      register: result
+    - debug: var=result

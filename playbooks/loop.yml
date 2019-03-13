@@ -1,0 +1,19 @@
+--- # Loop examples
+  - hosts: localhost
+    gather_facts: false
+    tasks:
+      - name: Provide list of packages to install
+        yum: 
+          name: "{{ item }}" 
+          state: present
+        register: result
+        loop: 
+          - httpd
+          - lynx
+      - debug: msg=result
+      - name: add a list of users
+        user: name={{ item }} state=present
+        with_items:
+          - test2
+        register: result2
+      - debug: var=result2

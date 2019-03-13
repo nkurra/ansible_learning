@@ -1,0 +1,13 @@
+ipaddress,hostname
+1.1.1.1,bri-gw-dc-02ay
+1.1.1.2,bri-gw-dc-02by
+1.1.1.3,bri-gw-dc-02cy
+1.1.1.4,bri-nc-dc-02ay
+1.1.1.5,bri-nc-dc-02by
+1.1.1.6,bri-nc-dc-02cy
+1.1.1.7,bri-nc-dc-02dy
+1.1.1.8,bri-agg-dc-02y
+1.1.1.9,bri-fnk-dc-02y
+1.1.1.10,bri-web-dc-02y
+1.1.1.11,bri-par-dc-02y
+1.1.1.12,bri-sql-dc-02y

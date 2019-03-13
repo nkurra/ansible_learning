@@ -1,0 +1,15 @@
+--- # When condition example
+  - hosts: all
+    gather_facts: yes
+    vars:
+      playbook_version: v01.b
+    vars_files:
+      - conf/webdefaults.yml
+    vars_prompt:
+      - name: pkg_name
+        prompt: Enter the package name to install.
+    tasks:
+      - name: Install the package
+        yum: pkg= {{ pkg_name }} state=installed update_cache=true
+        when: ansible_nodename =="nkurra2.mylabserver.com"
+              

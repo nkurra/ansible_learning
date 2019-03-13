@@ -1,0 +1,7 @@
+gateway gw
+fnkm fnk
+aggregator agg
+nc nc
+web web
+sqldb sql
+parsers par

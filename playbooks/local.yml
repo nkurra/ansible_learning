@@ -1,0 +1,9 @@
+--- # Local action playbook
+  - hosts: localhost
+    connection: local
+    gather_facts: false
+    tasks:
+      - name: install lynx locally
+        yum: pkg=lynx state=installed update_cache=true
+        register: result
+      - debug : msg=result

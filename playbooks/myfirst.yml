@@ -1,0 +1,7 @@
+--- # my first yml playbook
+- hosts: apacheweb
+  user: test
+  sudo: yes
+  connection: ssh
+  gather_facts:  yes
+

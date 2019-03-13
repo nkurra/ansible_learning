@@ -1,0 +1,3 @@
+control_server : nkurra2.mylabserver.com
+web_root : /var/www/html
+home_dir : "{{ lookup('env', 'HOME') }}"

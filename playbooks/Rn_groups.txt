@@ -1,0 +1,9 @@
+fun,inventory
+gw,gateway
+fnk,fnkm
+agg,aggregator
+nc,nc
+web,web
+sql,db
+par,parsers
+win,windows
